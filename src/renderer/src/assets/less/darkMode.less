@@ -1,0 +1,50 @@
+@import './DEFAULT_COMMON.less';
+
+@media (prefers-color-scheme: dark) {
+
+    :root{
+        color-scheme:dark;
+    }
+
+    body {
+        color: @darkcolor;
+        background-color: @darkbgc;
+    }
+
+    .MainMenuNav {
+        background-color: #414243;
+    }
+
+    .sideNav,
+    .buttonNav {
+        --el-menu-bg-color: #414243;
+        --el-menu-text-color: #86a5b1;
+        --el-menu-hover-text-color: #86a5b1;
+        --el-menu-hover-bg-color: #58585B;
+    }
+
+    .sidenavdisplay {
+        background-color: #414243;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    :root{
+        color-scheme:light;
+    }
+    body {
+        background-color: @libgc;
+        color: @licolor;
+    }
+
+    .MainMenuNav,
+    .sidenavdisplay {
+        background-color: #8D9095;
+    }
+
+    .sideNav,
+    .buttonNav{
+        --el-menu-bg-color: #8D9095;
+    }
+}

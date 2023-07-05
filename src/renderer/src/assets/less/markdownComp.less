@@ -1,0 +1,40 @@
+@import './DEFAULT_COMMON.less';
+
+.bytemd {
+  height: calc(100vh - 100px);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .bytemd {
+    background-color: @darkbgc;
+    color: #86a5b1;
+  }
+
+  .bytemd-toolbar {
+    background-color: @darkbgc;
+  }
+
+  .CodeMirror {
+    color: @darkcolor;
+  }
+
+  .CodeMirror-scroll {
+    background-color: @darkbgc;
+    // color: $darktext;
+  }
+
+  .CodeMirror-scrollbar-filler,
+  .CodeMirror-gutter-filler {
+    background-color: @darkbgc;
+  }
+
+  .cm-s-default .cm-def,
+  .cm-s-default .cm-header {
+    color: #409eff;
+  }
+
+  .cm-s-default .cm-variable-2 {
+    color: #66b1ff;
+  }
+}

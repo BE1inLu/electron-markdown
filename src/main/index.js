@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow,ipcMain,nativeTheme } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -6,8 +6,11 @@ import icon from '../../resources/icon.png?asset'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1000,
+    height: 650,
+    minHeight: 650,
+    minWidth: 1000,
+    frame: false,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -16,6 +19,10 @@ function createWindow() {
       sandbox: false
     }
   })
+
+  darkmode()
+
+  windowcontrol(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -69,3 +76,26 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+
+function darkmode(){
+  ipcMain.handle('toggle-theme:dark', () => {
+    nativeTheme.themeSource = 'dark'
+  })
+
+  ipcMain.handle('toggle-theme:light', () => {
+    nativeTheme.themeSource = 'light'
+  })
+}
+
+function windowcontrol(mainWindow){
+  ipcMain.on('min-window', () => {
+    mainWindow.minimize()
+  })
+  ipcMain.on('max-window', () => {
+    mainWindow.isMaximized() ? mainWindow.restore() : mainWindow.maximize()
+  })
+  ipcMain.on('close-window', () => {
+    mainWindow.close()
+  })
+}
