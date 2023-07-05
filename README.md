@@ -1,34 +1,14 @@
-# electron-markdown
+# 项目简介
 
-An Electron application with Vue
+此项目是 electron 练手项目
+用electron + vue 开发一个 markdown demo
 
-## Recommended IDE Setup
+采用的包：
+- `bytemd`
+- `vue-router`
+- `element-plus`
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-## Project Setup
-
-### Install
-
-```bash
-$ pnpm install
-```
-
-### Development
-
-```bash
-$ pnpm dev
-```
-
-### Build
-
-```bash
-# For windows
-$ pnpm build:win
-
-# For macOS
-$ pnpm build:mac
-
-# For Linux
-$ pnpm build:linux
-```
+TODO:
+- 🚧集成 sqlite
+- 🚧本地保存、读取功能
+- 🚧托盘功能
