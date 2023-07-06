@@ -1,8 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, nativeTheme} from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeTheme } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
-import 
+import icon from '../../resources/icon.jpg?asset'
+import { savemarkdownfile,loadmarkdownfile } from './filecontrol/fileControl.js';
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -56,9 +56,13 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
+  readfilemsg()
+  
   createWindow()
 
   savemsg()
+
+  
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -104,33 +108,13 @@ function windowcontrol(mainWindow) {
 
 // 实现接收回传的文件信息
 function savemsg() {
-  ipcMain.on('open-save-chart-dialog', (event,msg) => {
+  ipcMain.on('open-save-chart-dialog', (event, msg) => {
     console.log("接收消息：")
     console.log(msg)
     savemarkdownfile(msg)
   })
+}
 
-  // function save(content) {
-  //   dialog
-  //     .showSaveDialog({
-  //       filters: [
-  //         {
-  //           name: "markdown",
-  //           extensions: ["md"],
-  //         },
-  //       ],
-  //       defaultPath: '',
-  //       message: "选择要导出到的目录",
-  //       buttonLabel: "保存",
-  //       title: "保存到...",
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       fs.writeFileSync(res.filePath, content);
-  //     })
-  //     .catch((req) => {
-  //       console.log(req);
-  //     });
-  // }
-
+function readfilemsg(){
+  ipcMain.handle('dialog-openfile',loadmarkdownfile);
 }

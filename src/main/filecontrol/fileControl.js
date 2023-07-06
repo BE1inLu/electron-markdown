@@ -24,3 +24,26 @@ export function savemarkdownfile(content) {
             console.log(req);
         });
 }
+
+export async function loadmarkdownfile() {
+    var localdata;
+    await dialog.showOpenDialog({
+        filters: [
+            { name: 'Markdown', extensions: ["md"] },
+            { name: 'All Files', extensions: ['*'] }
+        ],
+        buttonLabel: "读取",
+        defaultPath: '',
+        title: "读取文件",
+    }).then((res) => {
+        console.log("读取path：")
+        console.log(res)
+        localdata = fs.readFileSync(res.filePaths[0], 'utf-8')
+        console.log("读取localdata")
+        console.log(localdata)
+    }).catch((req) => {
+        console.log(req);
+        return
+    });
+    return localdata
+}

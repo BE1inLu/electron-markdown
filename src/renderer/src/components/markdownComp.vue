@@ -9,9 +9,11 @@
       @change="handleChange"
     />
     <div class="buttonbar">
-      <el-row style="padding-left: 10px;">
-          <el-button type="primary" size="small" @click="buttonclick()">Save</el-button>
-          <el-button type="info" size="small" style="padding-left: 10px;">Read</el-button>
+      <el-row style="padding-left: 10px">
+        <el-button type="primary" size="small" @click="buttonclick()">Save</el-button>
+        <el-button type="info" size="small" style="padding-left: 10px" @click="loadfileclick()"
+          >Read</el-button
+        >
       </el-row>
     </div>
   </div>
@@ -45,10 +47,17 @@ export default {
     },
     buttonclick() {
       if (this.value != null) {
-        console.log("按钮触发");
-        console.log(this.value);
+        console.log('按钮触发')
+        console.log(this.value)
         window.control.savefile(this.value)
       }
+    },
+    
+    async loadfileclick() {
+      var savedata = await window.control.openFile()
+      console.log('savedata:')
+      console.log(savedata)
+      this.value = savedata
     }
   }
 }
@@ -56,7 +65,7 @@ export default {
 
 <style lang="less">
 @import '../assets/less/markdownComp.less';
-.buttonbar{
-  padding-top:5px;
+.buttonbar {
+  padding-top: 5px;
 }
 </style>

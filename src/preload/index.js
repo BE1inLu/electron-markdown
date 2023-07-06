@@ -2,7 +2,9 @@ import { electronAPI } from '@electron-toolkit/preload'
 import { contextBridge, ipcRenderer } from 'electron'
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  openFile: () => ipcRenderer.invoke('dialog:openFile'),
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
@@ -37,12 +39,11 @@ try {
     maxwindow: () => ipcRenderer.send('max-window'),
     closewindow: () => ipcRenderer.send('close-window'),
     // test3:实现文件保存功能
-    savefile: (msg) => { 
-      console.log("plugin:")
-      console.log(msg)
-      ipcRenderer.send('open-save-chart-dialog', msg) 
-    },
+    savefile: (msg) => ipcRenderer.send('open-save-chart-dialog', msg),
+    // test4:实现文件读取功能
+    openFile: () => ipcRenderer.invoke('dialog-openfile'),
   })
 } catch (error) {
   console.log(error);
 }
+
