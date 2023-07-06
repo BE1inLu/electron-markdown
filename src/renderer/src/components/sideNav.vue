@@ -24,20 +24,42 @@
     </div>
     <div class="sidenavbutton">
       <el-menu class="buttonNav" collapse="true">
-        <el-menu-item itemid="1">
-          <el-icon><Setting /></el-icon>
+        <el-sub-menu class="sub-menu-style" index="1">
           <template #title>
+            <el-icon><Setting /></el-icon>
             <span>Setting</span>
           </template>
-        </el-menu-item>
+          <el-menu-item class="settingitem" index="1-1">Setting</el-menu-item>
+          <el-menu-item class="settingitem" index="1-2" @click="open">About</el-menu-item>
+          <el-menu-item class="settingitem" index="1-3">Exit</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </div>
   </div>
 </template>
 
 <script>
+import { ElMessageBox } from 'element-plus'
+import { reactive } from 'vue'
 export default {
   name: 'Sidenav',
+  methods: {
+    open() {
+      const versions = reactive({ ...window.electron.process.versions })
+      ElMessageBox({
+        title: 'about',
+        message:
+          'Electron v' +
+          versions.electron +
+          ',chromeium v' +
+          versions.chrome +
+          ',Node v' +
+          versions.node +
+          ',V8 v' +
+          versions.v8,
+      })
+    }
+  }
 }
 </script>
 
@@ -52,7 +74,13 @@ export default {
   flex-grow: 3;
 }
 
-.buttonNav,.sideNav{
+.buttonNav,
+.sideNav {
   border-right: 0 !important;
+}
+
+.el-menu-item.settingitem {
+  height: 24px;
+  padding: 5px;
 }
 </style>

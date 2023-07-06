@@ -39,3 +39,12 @@ try {
 } catch (error) {
   console.log(error);
 }
+
+// test3:aboutwindow打开
+try{
+  contextBridge.exposeInMainWorld('openwindow',{
+    openaboutwindow:()=>ipcRenderer.send('openaboutwindow')
+  })
+}catch(error){
+  console.log(error)
+}

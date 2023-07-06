@@ -4,7 +4,8 @@ import editview from '../view/editview/index.vue'
 import testview from '../view/testview/testview.vue'
 
 const routers = [{
-    path: '/', redirect: '/home'
+    path: '/',
+    redirect: '/home'
 }, {
     path: '/home',
     component: homeview,
@@ -14,7 +15,8 @@ const routers = [{
 }, {
     path: '/testview',
     component: testview,
-}]
+}
+]
 
 export const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),

@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow,ipcMain,nativeTheme } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeTheme} from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -23,6 +23,8 @@ function createWindow() {
   darkmode()
 
   windowcontrol(mainWindow)
+
+  aboutwindow(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -78,7 +80,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 
-function darkmode(){
+function darkmode() {
   ipcMain.handle('toggle-theme:dark', () => {
     nativeTheme.themeSource = 'dark'
   })
@@ -88,7 +90,7 @@ function darkmode(){
   })
 }
 
-function windowcontrol(mainWindow){
+function windowcontrol(mainWindow) {
   ipcMain.on('min-window', () => {
     mainWindow.minimize()
   })
@@ -97,5 +99,24 @@ function windowcontrol(mainWindow){
   })
   ipcMain.on('close-window', () => {
     mainWindow.close()
+  })
+}
+
+function aboutwindow(mainWindow) {
+
+  ipcMain.on('openaboutwindow', () => {
+
+    const aboutwindow = new BrowserWindow({
+      width: 400,
+      height: 250,
+      parent: mainWindow
+    })
+
+    aboutwindow.loadURL("http://localhost:5173/about")
+
+    aboutwindow.on('ready-to-show', () => {
+      aboutwindow.show()
+    })
+
   })
 }
