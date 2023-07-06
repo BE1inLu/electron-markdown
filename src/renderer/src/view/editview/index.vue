@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- editview -->
     <markdownComp />
+    
   </div>
 </template>
 

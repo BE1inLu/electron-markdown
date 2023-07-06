@@ -1,0 +1,447 @@
+x-button {
+    --min-pressed-time: 150ms
+}
+
+@media (pointer:coarse) {
+    x-button {
+        --min-pressed-time: 600ms
+    }
+}
+
+x-button[condensed] {
+    padding: 2px 7px
+}
+
+x-button[computedsize=small] {
+    min-height: 24px
+}
+
+x-button[computedsize=large] {
+    min-height: 38px
+}
+
+x-buttons[vertical]>x-button {
+    width: 100%;
+    justify-content: flex-start
+}
+
+x-button:not(:defined) {
+    display: none
+}
+
+x-button>x-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
+    min-width: 1px;
+    pointer-events: none
+}
+
+x-button>x-icon~x-label,
+x-button>x-label~x-icon {
+    margin: 0 0 0 6px
+}
+
+x-button[skin=flat] {
+    padding: 0
+}
+
+x-buttons:not([vertical])>x-button[skin=flat]:not(:first-of-type) {
+    margin-left: 10px
+}
+
+x-buttons:not([vertical])>x-button[skin=flat][computedsize=small]:not(:first-of-type) {
+    margin-left: 5px
+}
+
+x-buttons[vertical]>x-button[skin=flat]:not(:first-of-type) {
+    margin-top: 10px
+}
+
+x-buttons[vertical]>x-button[skin=flat][computedsize=small]:not(:first-of-type) {
+    margin-top: 5px
+}
+
+x-button[skin=flat]::part(arrow) {
+    width: 10px;
+    height: 10px
+}
+
+x-button[skin="^flat"]::part(arrow) {
+    margin: 0 0 0 2px
+}
+
+x-button[skin=flat]>x-icon {
+    width: 26px;
+    height: 26px
+}
+
+x-button[skin=flat][computedsize=small]>x-icon {
+    width: 22px;
+    height: 22px
+}
+
+x-button[skin=flat][computedsize=large]>x-icon {
+    width: 30px;
+    height: 30px
+}
+
+x-button[skin=recessed] {
+    min-height: 18px;
+    padding: 4px 8px
+}
+
+x-button[skin=recessed][computedsize=small] {
+    padding: 2px 8px
+}
+
+x-button[skin=recessed][computedsize=large] {
+    padding: 6px 8px
+}
+
+x-button[skin=nav] {
+    padding: 8px 15px
+}
+
+x-button[skin=nav] x-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px
+}
+
+x-button[skin=nav][computedsize=small]>x-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px
+}
+
+x-button[skin=nav][computedsize=large]>x-icon {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px
+}
+
+x-button[skin=nav] x-label {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: start;
+    max-width: 100%
+}
+
+x-button[skin=dock],
+x-buttons[vertical]>x-button[skin=dock] {
+    width: 38px;
+    height: 38px;
+    min-height: 38px;
+    padding: 0;
+    justify-content: center
+}
+
+x-button[skin=dock][computedsize=small],
+x-buttons[vertical]>x-button[skin=dock][computedsize=small] {
+    width: 30px;
+    height: 30px;
+    min-height: 30px
+}
+
+x-button[skin=dock][computedsize=large],
+x-buttons[vertical]>x-button[skin=dock][computedsize=large] {
+    width: 45px;
+    height: 45px;
+    min-height: 45px
+}
+
+x-button[skin=circular] {
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0
+}
+
+x-button[skin=circular][computedsize=small] {
+    width: 24px;
+    height: 24px;
+    min-height: 24px
+}
+
+x-button[skin=circular][computedsize=large] {
+    width: 38px;
+    height: 38px;
+    min-height: 38px
+}
+
+x-button[skin=circular]>x-icon {
+    width: 18px;
+    height: 18px
+}
+
+x-button[skin=circular][computedsize=small]>x-icon {
+    width: 14px;
+    height: 14px
+}
+
+x-button[skin=circular][computedsize=large]>x-icon {
+    width: 22px;
+    height: 22px
+}
+
+x-buttons[vertical] {
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center
+}
+
+x-buttons:not(:defined) {
+    display: none
+}
+
+dialog>footer x-button {
+    margin-left: 8px
+}
+
+
+x-stepper::part(increment-button) {
+    border-left: 1px solid var(--border-color)
+}
+
+x-stepper::part(decrement-button),
+x-stepper::part(increment-button) {
+    min-height: 24px
+}
+
+x-stepper::part(decrement-button):hover,
+x-stepper::part(increment-button):hover {
+    background: rgba(255, 255, 255, .2)
+}
+
+x-stepper[pressed=decrement]::part(decrement-button),
+x-stepper[pressed=increment]::part(increment-button) {
+    background: rgba(255, 255, 255, .3);
+    color: var(--text-color)
+}
+
+x-button:focus {
+    outline: 2px solid var(--light-accent-color);
+    outline-offset: -1px
+}
+
+x-button[skin=default] {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, .12);
+    border-radius: 6px
+}
+
+x-button[skin=default]:hover {
+    background: rgba(255, 255, 255, .18)
+}
+
+x-button[skin=default][pressed] {
+    background: rgba(255, 255, 255, .28)
+}
+
+x-button[skin=default][toggled] {
+    color: #fff;
+    background: var(--accent-color)
+}
+
+x-button[skin=default][toggled][expanded] {
+    background: var(--light-accent-color)
+}
+
+x-button[skin=default][toggled][pressed] {
+    background: var(--light-accent-color)
+}
+
+x-buttons:not([vertical])>x-button[skin=default]:not(:first-of-type) {
+    border-left: 1px solid rgba(255, 255, 255, .12);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+
+x-buttons:not([vertical])>x-button[skin=default]:not(:last-of-type) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+x-buttons:not([vertical])>x-button[skin=default][pressed] {
+    border-left-color: rgba(255, 255, 255, .12)
+}
+
+x-buttons:not([vertical])>x-button[skin=default][pressed]+x-button[skin=default]:not([toggled]) {
+    border-left-color: rgba(255, 255, 255, .28)
+}
+
+x-buttons:not([vertical])>x-button[skin=default][toggled],
+x-buttons:not([vertical])>x-button[skin=default][toggled]+x-button[skin=default] {
+    border-left-color: var(--light-accent-color)
+}
+
+x-buttons:not([vertical])>x-button[skin=default][toggled][pressed],
+x-buttons:not([vertical])>x-button[skin=default][toggled][pressed]+x-button[skin=default] {
+    border-left-color: var(--lightest-accent-color) !important
+}
+
+x-buttons[vertical]>x-button[skin=default]:not(:first-of-type) {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0
+}
+
+x-buttons[vertical]>x-button[skin=default]:not(:last-of-type) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+x-buttons[vertical]>x-button[skin=default][pressed] {
+    border-top-color: rgba(255, 255, 255, .12)
+}
+
+x-buttons[vertical]>x-button[skin=default][pressed]+x-button[skin=default]:not([toggled]) {
+    border-top-color: rgba(255, 255, 255, .28)
+}
+
+x-buttons[vertical]>x-button[skin=default][toggled],
+x-buttons[vertical]>x-button[skin=default][toggled]+x-button[skin=default] {
+    border-top-color: var(--light-accent-color)
+}
+
+x-buttons[vertical]>x-button[skin=default][toggled][pressed],
+x-buttons[vertical]>x-button[skin=default][toggled][pressed]+x-button[skin=default] {
+    border-top-color: var(--lightest-accent-color) !important
+}
+
+x-button>x-label {
+    font-weight: 700
+}
+
+x-button[skin=dock] {
+    color: var(--text-color);
+    background: var(--light-background-color);
+    border: 1px solid rgba(255, 255, 255, .3)
+}
+
+x-button[skin=dock]:hover {
+    background: rgba(255, 255, 255, .18)
+}
+
+x-button[skin=dock][pressed] {
+    background: rgba(255, 255, 255, .28)
+}
+
+x-button[skin=dock][toggled] {
+    color: #fff;
+    background: var(--accent-color);
+    border-color: var(--light-accent-color)
+}
+
+x-buttons:not([vertical])>x-button[skin=dock]:not(:last-of-type) {
+    border-right: none
+}
+
+x-buttons:not([vertical])>x-button[skin=dock][toggled]+x-button {
+    border-left-color: var(--light-accent-color)
+}
+
+x-buttons[vertical]>x-button[skin=dock]:not(:last-of-type) {
+    border-bottom: none
+}
+
+x-buttons[vertical]>x-button[skin=dock][toggled]+x-button {
+    border-top-color: var(--light-accent-color)
+}
+
+x-button[skin=flat] {
+    color: var(--text-color)
+}
+
+x-button[skin=flat][expanded],
+x-button[skin=flat][toggled] {
+    color: var(--accent-color)
+}
+
+x-button[skin=flat][pressed] {
+    color: var(--light-accent-color)
+}
+
+x-button[skin=recessed] {
+    color: var(--text-color);
+    border-radius: 6px
+}
+
+x-button[skin=recessed]:hover {
+    background: rgba(255, 255, 255, .07)
+}
+
+x-button[skin=recessed][toggled] {
+    color: rgba(0, 0, 0, .95);
+    background: rgba(255, 255, 255, .6)
+}
+
+x-button[skin=recessed][pressed] {
+    color: rgba(0, 0, 0, .95);
+    background: rgba(255, 255, 255, .75)
+}
+
+x-buttons:not([vertical])>x-button[skin=recessed]+x-button[skin=recessed] {
+    margin-left: 4px
+}
+
+x-buttons[vertical]>x-button[skin=recessed]+x-button[skin=recessed] {
+    margin-top: 4px
+}
+
+x-button[skin=recessed]>x-label {
+    font-size: 12px;
+    text-align: center
+}
+
+x-button[skin=nav] {
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: default
+}
+
+x-button[skin=nav][toggled] {
+    background: rgba(255, 255, 255, .12)
+}
+
+x-button[skin=nav]:hover {
+    background: rgba(255, 255, 255, .08)
+}
+
+x-button[skin=nav][toggled]:hover {
+    background: rgba(255, 255, 255, .18)
+}
+
+x-button[skin=nav][pressed] {
+    background: rgba(255, 255, 255, .26)
+}
+
+x-button[skin=nav] x-label {
+    font-weight: 600
+}
+
+x-button[skin=circular] {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, .12);
+    border-radius: 999px
+}
+
+x-button[skin=circular]:hover {
+    background: rgba(255, 255, 255, .18)
+}
+
+x-button[skin=circular][expanded],
+x-button[skin=circular][pressed] {
+    background: rgba(255, 255, 255, .28)
+}
+
+x-button[skin=circular]>x-icon {
+    transform: scale(.8)
+}

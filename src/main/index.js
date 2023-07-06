@@ -1,9 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, nativeTheme, dialog } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeTheme} from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import fs from 'fs'
-
+import 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -59,6 +58,8 @@ app.whenReady().then(() => {
 
   createWindow()
 
+  savemsg()
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -103,33 +104,33 @@ function windowcontrol(mainWindow) {
 
 // 实现接收回传的文件信息
 function savemsg() {
-  ipcMain.on('open-save-chart-dialog', (event, message) => {
-    // console.log(`receive message from render: ${message}`)
-    save(message)
+  ipcMain.on('open-save-chart-dialog', (event,msg) => {
+    console.log("接收消息：")
+    console.log(msg)
+    savemarkdownfile(msg)
   })
 
-  function save(content) {
-    dialog
-      .showSaveDialog({
-        filters: [
-          {
-            name: "MD文件",
-            extensions: ["md"],
-          },
-        ],
-        properties: ["openFile"],
-        defaultPath: '',
-        message: "选择要导入的Mackdown文件",
-        buttonLabel: "导出",
-        title: "保存文件",
-      })
-      .then((res) => {
-        console.log(res);
-        fs.writeFileSync(res.filePath, content);
-      })
-      .catch((req) => {
-        console.log(req);
-      });
-  }
+  // function save(content) {
+  //   dialog
+  //     .showSaveDialog({
+  //       filters: [
+  //         {
+  //           name: "markdown",
+  //           extensions: ["md"],
+  //         },
+  //       ],
+  //       defaultPath: '',
+  //       message: "选择要导出到的目录",
+  //       buttonLabel: "保存",
+  //       title: "保存到...",
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //       fs.writeFileSync(res.filePath, content);
+  //     })
+  //     .catch((req) => {
+  //       console.log(req);
+  //     });
+  // }
 
 }

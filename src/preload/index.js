@@ -37,7 +37,11 @@ try {
     maxwindow: () => ipcRenderer.send('max-window'),
     closewindow: () => ipcRenderer.send('close-window'),
     // test3:实现文件保存功能
-    savefile:(value)=>ipcRenderer.send('open-save-chart-dialog',value),
+    savefile: (msg) => { 
+      console.log("plugin:")
+      console.log(msg)
+      ipcRenderer.send('open-save-chart-dialog', msg) 
+    },
   })
 } catch (error) {
   console.log(error);

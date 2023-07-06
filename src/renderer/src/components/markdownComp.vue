@@ -1,5 +1,20 @@
 <template>
-  <Editor mode="tab" :value="value" :plugins="plugins" :fullscreen="true" @change="handleChange" />
+  <div>
+    <Editor
+      mode="auto"
+      :value="value"
+      :plugins="plugins"
+      :fullscreen="true"
+      max-length="100"
+      @change="handleChange"
+    />
+    <div class="buttonbar">
+      <el-row style="padding-left: 10px;">
+          <el-button type="primary" size="small" @click="buttonclick()">Save</el-button>
+          <el-button type="info" size="small" style="padding-left: 10px;">Read</el-button>
+      </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,10 +36,18 @@ export default {
     handleChange(v) {
       this.value = v
       window.addEventListener('keyup', this.handleKeyPress, true)
+      console.log(v)
     },
     handleKeyPress(event) {
       if (event.ctrlKey && event.keyCode == 83) {
-        window.control.savefile(this.value);
+        window.control.savefile(this.value)
+      }
+    },
+    buttonclick() {
+      if (this.value != null) {
+        console.log("按钮触发");
+        console.log(this.value);
+        window.control.savefile(this.value)
       }
     }
   }
@@ -33,4 +56,7 @@ export default {
 
 <style lang="less">
 @import '../assets/less/markdownComp.less';
+.buttonbar{
+  padding-top:5px;
+}
 </style>
