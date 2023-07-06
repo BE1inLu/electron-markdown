@@ -38,9 +38,15 @@ dependencies:
   prismjs:
     specifier: ^1.29.0
     version: 1.29.0
+  sqlite-electron:
+    specifier: ^2.2.8
+    version: 2.2.8
   vue-router:
     specifier: ^4.2.2
     version: 4.2.2(vue@3.3.4)
+  xel:
+    specifier: ^0.21.1
+    version: 0.21.1
 
 devDependencies:
   '@electron/notarize':
@@ -3791,6 +3797,11 @@ packages:
     resolution: {integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==}
     optional: true
 
+  /sqlite-electron@2.2.8:
+    resolution: {integrity: sha512-8zEpGHny0P6VvaY4RxiilR4/gkill4YjWnqhq/0Q/421Mv1h+2T6t6kxaBRWaOVGDb0Kac5wKN8VS0rsFsEAJw==}
+    requiresBuild: true
+    dev: false
+
   /stat-mode@1.0.0:
     resolution: {integrity: sha512-jH9EhtKIjuXZ2cWxmXS8ZP80XyC3iasQxMDV8jzhNJpfDb7VbQLVW4Wvsxz9QZvzV+G4YoSfBUVKDOyxLzi/sg==}
     engines: {node: '>= 6'}
@@ -4175,6 +4186,10 @@ packages:
 
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  /xel@0.21.1:
+    resolution: {integrity: sha512-/gU5xJ+awggqGWFn74AOJ6ExYU8OgMrOSrRx+VJU+XmQmXOuGauAX0sTaGSPdpKUmQ2wCjSZUaRjMjgtOoQtcA==}
+    dev: false
 
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
