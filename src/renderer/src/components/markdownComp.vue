@@ -20,6 +20,12 @@ export default {
   methods: {
     handleChange(v) {
       this.value = v
+      window.addEventListener('keyup', this.handleKeyPress, true)
+    },
+    handleKeyPress(event) {
+      if (event.ctrlKey && event.keyCode == 83) {
+        window.control.savefile(this.value);
+      }
     }
   }
 }

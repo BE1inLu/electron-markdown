@@ -29,22 +29,16 @@ try {
   console.log(error);
 }
 
-// test2:实现窗口控制
+
 try {
   contextBridge.exposeInMainWorld('control', {
+    // test2:实现窗口控制
     minwindow: () => ipcRenderer.send('min-window'),
     maxwindow: () => ipcRenderer.send('max-window'),
-    closewindow: () => ipcRenderer.send('close-window')
+    closewindow: () => ipcRenderer.send('close-window'),
+    // test3:实现文件保存功能
+    savefile:(value)=>ipcRenderer.send('open-save-chart-dialog',value),
   })
 } catch (error) {
   console.log(error);
-}
-
-// test3:aboutwindow打开
-try{
-  contextBridge.exposeInMainWorld('openwindow',{
-    openaboutwindow:()=>ipcRenderer.send('openaboutwindow')
-  })
-}catch(error){
-  console.log(error)
 }

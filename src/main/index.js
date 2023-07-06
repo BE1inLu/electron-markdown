@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, nativeTheme} from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeTheme, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import fs from 'fs'
 
 function createWindow() {
   // Create the browser window.
@@ -23,8 +24,6 @@ function createWindow() {
   darkmode()
 
   windowcontrol(mainWindow)
-
-  aboutwindow(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -102,21 +101,35 @@ function windowcontrol(mainWindow) {
   })
 }
 
-function aboutwindow(mainWindow) {
-
-  ipcMain.on('openaboutwindow', () => {
-
-    const aboutwindow = new BrowserWindow({
-      width: 400,
-      height: 250,
-      parent: mainWindow
-    })
-
-    aboutwindow.loadURL("http://localhost:5173/about")
-
-    aboutwindow.on('ready-to-show', () => {
-      aboutwindow.show()
-    })
-
+// 实现接收回传的文件信息
+function savemsg() {
+  ipcMain.on('open-save-chart-dialog', (event, message) => {
+    // console.log(`receive message from render: ${message}`)
+    save(message)
   })
+
+  function save(content) {
+    dialog
+      .showSaveDialog({
+        filters: [
+          {
+            name: "MD文件",
+            extensions: ["md"],
+          },
+        ],
+        properties: ["openFile"],
+        defaultPath: '',
+        message: "选择要导入的Mackdown文件",
+        buttonLabel: "导出",
+        title: "保存文件",
+      })
+      .then((res) => {
+        console.log(res);
+        fs.writeFileSync(res.filePath, content);
+      })
+      .catch((req) => {
+        console.log(req);
+      });
+  }
+
 }
