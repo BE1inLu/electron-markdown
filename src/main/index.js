@@ -2,7 +2,8 @@ import { app, shell, BrowserWindow, ipcMain, nativeTheme } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
-import { savemarkdownfile,loadmarkdownfile } from './filecontrol/fileControl.js';
+import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
+import * as db from './dbcontrol/index.js'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -57,12 +58,12 @@ app.whenReady().then(() => {
   })
 
   readfilemsg()
-  
+
   createWindow()
 
   savemsg()
 
-  
+  dbcontrol()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -115,6 +116,16 @@ function savemsg() {
   })
 }
 
-function readfilemsg(){
-  ipcMain.handle('dialog-openfile',loadmarkdownfile);
+function readfilemsg() {
+  ipcMain.handle('dialog-openfile', loadmarkdownfile);
+}
+
+// dbcontrol
+function dbcontrol() {
+  
+  ipcMain.handle('create-db', db.createdb)
+
+  ipcMain.handle('set-dbpath', (dbpath) => {
+    return db.readdbPath(dbpath)
+  })
 }

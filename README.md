@@ -14,5 +14,6 @@ TODO:
 - ⭕集成 sqlite
 - ⭕本地保存、读取功能
 - 🚧托盘功能
-- 🚧store 存储-- electron-store集成
+- 🚧setting 页/窗口实现
+- 🚧store 存储 -- electron-store 集成
 - 🚧sqlite 存储实现

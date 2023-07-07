@@ -14,9 +14,11 @@ import timeComp from './components/timeComp.vue'
         <sideNav></sideNav>
       </el-aside>
       <el-container>
-        <el-header class="main_header" style="--el-header-height: 30px;">
+        <el-header class="main_header" style="--el-header-height: 30px">
           <div>
-            <span style="display: flex;height: 50px;"> Hallo world|<timeComp></timeComp></span>
+            <span style="display: flex; height: 50px">
+              <span>Hallo world | </span><timeComp />
+            </span>
           </div>
         </el-header>
 

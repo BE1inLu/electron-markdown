@@ -14,10 +14,10 @@
             <span>Edit</span>
           </template>
         </el-menu-item>
-        <el-menu-item itemid="3" index="/testview">
+        <el-menu-item itemid="3" index="/index">
           <el-icon><Document /></el-icon>
           <template #title>
-            <span>test</span>
+            <span>index</span>
           </template>
         </el-menu-item>
       </el-menu>
@@ -56,7 +56,7 @@ export default {
           ',Node v' +
           versions.node +
           ',V8 v' +
-          versions.v8,
+          versions.v8
       })
     }
   }
@@ -82,5 +82,25 @@ export default {
 .el-menu-item.settingitem {
   height: 24px;
   padding: 5px;
+}
+@media (prefers-color-scheme: dark) {
+  .el-message-box {
+    --el-bg-color:#414243;
+    --el-text-color-regular:#86a5b1;
+    --el-text-color-primary:#86a5b1;
+    --el-border-color-lighter:#414243;
+  }
+
+  .el-menu{
+    --el-menu-bg-color:#414243;
+    --el-menu-text-color:#86a5b1;
+    --el-menu-hover-bg-color:#6a6c6e;
+    --el-menu-border-color:#414243;
+  }
+
+  .el-popper.is-light{
+    --el-border-color-light:#6a6c6e;
+  }
+
 }
 </style>

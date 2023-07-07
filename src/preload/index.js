@@ -31,7 +31,6 @@ try {
   console.log(error);
 }
 
-
 try {
   contextBridge.exposeInMainWorld('control', {
     // test2:实现窗口控制
@@ -47,3 +46,12 @@ try {
   console.log(error);
 }
 
+// db ipc通信 方法
+try {
+  contextBridge.exposeInMainWorld('dbcontrol', {
+    createdb: () => ipcRenderer.send('createdb'),
+    readdb: (path) => ipcRenderer.send('loaddb', path),
+  })
+} catch (err) {
+  console.log(err);
+}

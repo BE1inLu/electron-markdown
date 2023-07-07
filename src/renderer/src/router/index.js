@@ -1,7 +1,7 @@
 import * as VueRouter from 'vue-router'
 import homeview from '../view/homeview/index.vue'
 import editview from '../view/editview/index.vue'
-import testview from '../view/testview/testview.vue'
+import indexview from '../view/indexview/index.vue'
 
 const routers = [{
     path: '/',
@@ -13,8 +13,8 @@ const routers = [{
     path: '/edit',
     component: editview,
 }, {
-    path: '/testview',
-    component: testview,
+    path: '/index',
+    component: indexview,
 }
 ]
 

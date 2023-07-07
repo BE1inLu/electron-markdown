@@ -52,13 +52,15 @@ export default {
         window.control.savefile(this.value)
       }
     },
-    
     async loadfileclick() {
       var savedata = await window.control.openFile()
       console.log('savedata:')
       console.log(savedata)
       this.value = savedata
     }
+
+    // TODO:弹出提示窗口 & msgbox 提示信息
+
   }
 }
 </script>
