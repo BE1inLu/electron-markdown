@@ -6,6 +6,7 @@
     </el-tab-pane>
     <el-tab-pane label="card" name="cardview"> cardview </el-tab-pane>
   </el-tabs>
+  <div><el-button @click="getsqldata">test</el-button></div>
 </template>
 
 <script>
@@ -16,14 +17,13 @@ export default {
   data() {
     return {
       activeName: 'tableview',
-      sqldata:[]
+      sqldata: []
     }
   },
   methods: {
-    getsqldata(){
-      this.sqldata=async()=>{
-        
-      }
+    async getsqldata() {
+      console.log('click')
+      await window.dbcontrol.testdb()
     }
   }
 }

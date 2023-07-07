@@ -49,8 +49,8 @@ try {
 // db ipc通信 方法
 try {
   contextBridge.exposeInMainWorld('dbcontrol', {
-    createdb: () => ipcRenderer.send('createdb'),
-    readdb: (path) => ipcRenderer.send('loaddb', path),
+    createdb: () => ipcRenderer.send('create-db'),
+    testdb: () => ipcRenderer.invoke('test-db'),
   })
 } catch (err) {
   console.log(err);

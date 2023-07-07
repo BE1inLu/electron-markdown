@@ -3,7 +3,8 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
-import * as db from './dbcontrol/index.js'
+import { readdb } from './dbcontrol/index.js'
+import { setdbPath } from 'sqlite-electron';
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -59,11 +60,13 @@ app.whenReady().then(() => {
 
   readfilemsg()
 
+  dbcontrol()
+
   createWindow()
 
   savemsg()
 
-  dbcontrol()
+
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -122,10 +125,22 @@ function readfilemsg() {
 
 // dbcontrol
 function dbcontrol() {
-  
-  ipcMain.handle('create-db', db.createdb)
 
-  ipcMain.handle('set-dbpath', (dbpath) => {
-    return db.readdbPath(dbpath)
+  ipcMain.on('create-db', () => {
+    console.log("main :");
+    var msg = readdb()
+    console.log("localmsg:");
+    console.log(msg);
+    // return setdbPath(localpath)
+  })
+
+  ipcMain.handle('test-db', async () => {
+    var teststr = "../render/src/assets/database/basedb.db"
+    console.log(teststr);
+    try {
+      return await setdbPath(teststr)
+    }catch(err){
+      console.log(err)
+    }
   })
 }
