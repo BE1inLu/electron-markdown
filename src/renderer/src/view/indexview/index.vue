@@ -30,7 +30,8 @@ export default {
 
   methods: {
     async loaddbdata() {
-      await window.dbcontrol.loaddbdata()
+       const dbdata=await window.dbcontrol.loaddbdata()
+       console.log(dbdata);
     }
   }
 }

@@ -38,10 +38,10 @@ try {
     maxwindow: () => ipcRenderer.send('max-window'),
     closewindow: () => ipcRenderer.send('close-window'),
     // test3:实现文件保存功能
-    savefile: (msg) => ipcRenderer.send('open-save-chart-dialog', msg),
-    savefilebysql:(msg)=>ipcRenderer.invoke('save-file-by-db',msg),
+    savefile: (msg) => ipcRenderer.send('open-save-chart-dialog', msg),// 外部保存
+    savefilebysql:(msg)=>ipcRenderer.invoke('save-file-by-db',msg),// 数据库保存
     // test4:实现文件读取功能
-    openFile: () => ipcRenderer.invoke('dialog-openfile'),
+    openFile: () => ipcRenderer.invoke('dialog-openfile'),// 外部读取
   })
 } catch (error) {
   console.log(error);

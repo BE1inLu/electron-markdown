@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
-import { createmdfilebydb, readdb } from './dbcontrol/index.js'
+import { createmdfilebydb, readallabdata, readdb } from './dbcontrol/index.js'
 import { log } from 'console';
 
 function createWindow() {
@@ -124,7 +124,7 @@ function readfilemsg() {
 
 // dbcontrol
 function dbcontrol() {
-  ipcMain.handle('create-db', async() => {
+  ipcMain.handle('create-db', async () => {
     console.log("main :");
     console.log(app.getPath('appData'));
     var msg = await readdb()
@@ -132,18 +132,22 @@ function dbcontrol() {
   })
 
   // markdown 数据库持久化读取
-  ipcMain.handle('load-db-data',async()=>{
+  ipcMain.handle('load-db-data', async (event) => {
     log("load-db-data")
+    const alldbdata=await readallabdata()
+    log("alldbdata")
+    log(alldbdata)
+    return alldbdata
   })
 
   // markdown 数据库持久化存储
-  ipcMain.handle('save-file-by-db',async(event,content)=>{
+  ipcMain.handle('save-file-by-db', async (event, content) => {
     log('save-file-by-db')
     log(content)
     await createmdfilebydb(content)
   })
 
-  
+
 
   // ipcMain.handle('test-db', async () => {
   //   var teststr = "../../src/renderer/src/assets/database/basedb1.db"

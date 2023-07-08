@@ -21,11 +21,6 @@ export default {
   props: ["list"],
   data() {
     return {
-      // tabledata: [
-      //   { id: 1, name: 'test1', createdate: '2023-7-7', update: '2023-7-8' },
-      //   { id: 2, name: 'test2', createdate: '2023-7-5', update: '2023-7-8' },
-      //   { id: 3, name: 'test3', createdate: '2023-7-6', update: '2023-7-8' }
-      // ]
     }
   }
 }

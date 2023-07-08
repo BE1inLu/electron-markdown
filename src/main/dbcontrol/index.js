@@ -39,10 +39,15 @@ export async function overloadfilebydb(uuid, value) {
 
 // 查看数据库数据
 export async function readallabdata() {
-    log("readall")
+    log("readall func")
     const fetch = "all"
-    return await executeQuery(
-        "SELECT * FROM markdowntable ", fetch
-    )
+    try {
+        return await executeQuery(
+            "SELECT * FROM markdowntable ", fetch
+        )
+    } catch (err) {
+        log(err)
+    }
+    return null
 }
 

@@ -17,3 +17,5 @@ TODO:
 - 🚧setting 页实现
 - 🚧store 存储 -- electron-store 集成
 - 🚧sqlite 存储实现
+
+- ipc 命名规范
