@@ -1,9 +1,10 @@
 <template>
-  <el-table :data="tabledata">
+  <el-table :data="list">
     <el-table-column type="index" label="id" width="50px" />
     <el-table-column prop="id" label="SQL-ID" width="150px" />
     <el-table-column prop="name" label="Name" />
-    <el-table-column prop="date" label="Date" />
+    <el-table-column prop="createdate" label="CreateDate" />
+    <el-table-column prop="update" label="UpDate" />
     <el-table-column prop="setting" label="satting">
       <template #default="">
         <el-button class="edit" type="primary">Edit</el-button>
@@ -16,19 +17,21 @@
 <script>
 export default {
   name: 'Tableview',
+  // eslint-disable-next-line vue/require-prop-types
+  props: ["list"],
   data() {
     return {
-      tabledata: [
-        { id: 1, name: 'test1', date: '2023-7-7' },
-        { id: 2, name: 'test2', date: '2023-7-5' },
-        { id: 3, name: 'test3', date: '2023-7-6' }
-      ]
+      // tabledata: [
+      //   { id: 1, name: 'test1', createdate: '2023-7-7', update: '2023-7-8' },
+      //   { id: 2, name: 'test2', createdate: '2023-7-5', update: '2023-7-8' },
+      //   { id: 3, name: 'test3', createdate: '2023-7-6', update: '2023-7-8' }
+      // ]
     }
-  },
+  }
 }
 </script>
 
-<style >
+<style>
 @media (prefers-color-scheme: dark) {
   .el-table {
     --el-table-text-color: #86a5b1;

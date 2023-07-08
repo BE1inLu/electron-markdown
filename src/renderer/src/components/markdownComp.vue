@@ -9,11 +9,38 @@
       @change="handleChange"
     />
     <div class="buttonbar">
-      <el-row style="padding-left: 10px">
-        <el-button type="primary" size="small" @click="buttonclick()">Save</el-button>
-        <el-button type="info" size="small" style="padding-left: 10px" @click="loadfileclick()"
-          >Read</el-button
+      <el-row>
+        <el-dropdown
+          split-button
+          style="margin-left: 10px"
+          type="primary"
+          size="small"
+          @click="savebylocal()"
         >
+          Save
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="savefilebydatabase()">save by database</el-dropdown-item>
+              <el-dropdown-item>Action 2</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+
+        <el-dropdown
+          split-button
+          type="info"
+          size="small"
+          style="margin-left: 20px"
+          @click="loadfilebylocal()"
+        >
+          Read
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>Action 1</el-dropdown-item>
+              <el-dropdown-item>Action 2</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </el-row>
     </div>
   </div>
@@ -25,6 +52,7 @@ import heighlight from '@bytemd/plugin-highlight'
 import emoji from '@bytemd/plugin-gemoji'
 import { Editor } from '@bytemd/vue-next'
 import '../assets/css/byteMD.css'
+import { ElMessage } from 'element-plus'
 const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
@@ -45,22 +73,48 @@ export default {
         window.control.savefile(this.value)
       }
     },
-    buttonclick() {
+    savebylocal() {
       if (this.value != null) {
-        console.log('按钮触发')
-        console.log(this.value)
-        window.control.savefile(this.value)
+        try {
+          window.control.savefile(this.value)
+          ElMessage({
+            message: 'save file success',
+            type: 'success'
+          })
+        } catch (err) {
+          ElMessage.error('save file error')
+        }
       }
     },
-    async loadfileclick() {
-      var savedata = await window.control.openFile()
-      console.log('savedata:')
-      console.log(savedata)
-      this.value = savedata
+    async loadfilebylocal() {
+      try {
+        var savedata = await window.control.openFile()
+        console.log('savedata:')
+        console.log(savedata)
+        this.value = savedata
+        ElMessage({
+          message: 'load file success',
+          type: 'success'
+        })
+      } catch (err) {
+        ElMessage.error('open file error')
+        console.log(err)
+      }
+    },
+    async savefilebydatabase() {
+      if (this.value != null) {
+        try {
+          await window.control.savefilebysql(this.value)
+          ElMessage({
+            message: 'save file by sql success',
+            type: 'success'
+          })
+        } catch (err) {
+          ElMessage.error('save file error')
+          console.log(err)
+        }
+      }
     }
-
-    // TODO:弹出提示窗口 & msgbox 提示信息
-
   }
 }
 </script>

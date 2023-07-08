@@ -39,6 +39,7 @@ try {
     closewindow: () => ipcRenderer.send('close-window'),
     // test3:实现文件保存功能
     savefile: (msg) => ipcRenderer.send('open-save-chart-dialog', msg),
+    savefilebysql:(msg)=>ipcRenderer.invoke('save-file-by-db',msg),
     // test4:实现文件读取功能
     openFile: () => ipcRenderer.invoke('dialog-openfile'),
   })
@@ -49,8 +50,8 @@ try {
 // db ipc通信 方法
 try {
   contextBridge.exposeInMainWorld('dbcontrol', {
-    createdb: () => ipcRenderer.send('create-db'),
-    testdb: () => ipcRenderer.invoke('test-db'),
+    createdb: () => ipcRenderer.invoke('create-db'),
+    loaddbdata: () => ipcRenderer.invoke('load-db-data'),
   })
 } catch (err) {
   console.log(err);

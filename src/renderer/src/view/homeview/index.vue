@@ -1,18 +1,22 @@
 <template>
   <div>
-    <!-- homeview -->
-    <h2>version</h2>
-    <versions></versions>
+    <h1>homeview</h1>
   </div>
 </template>
 
 <script>
-import versions from '../../components/Versions.vue'
 export default {
-  components:{versions}
+  mounted() {
+    this.getsqldata()
+  },
+  methods: {
+    async getsqldata() {
+      console.log('loaddbdata')
+      await window.dbcontrol.createdb()
+    }
+  }
 }
 </script>
 
 <style>
-
 </style>

@@ -29,6 +29,7 @@
     "js-yaml": "^4.1.0",
     "prismjs": "^1.29.0",
     "sqlite-electron": "^2.2.8",
+    "uuid": "^9.0.0",
     "vue-router": "^4.2.2",
     "xel": "^0.21.1"
   },

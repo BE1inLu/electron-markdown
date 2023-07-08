@@ -3,8 +3,9 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
-import { readdb } from './dbcontrol/index.js'
-import { setdbPath } from 'sqlite-electron';
+import { createmdfilebydb, readdb } from './dbcontrol/index.js'
+import { log } from 'console';
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -113,8 +114,6 @@ function windowcontrol(mainWindow) {
 // 实现接收回传的文件信息
 function savemsg() {
   ipcMain.on('open-save-chart-dialog', (event, msg) => {
-    console.log("接收消息：")
-    console.log(msg)
     savemarkdownfile(msg)
   })
 }
@@ -125,22 +124,41 @@ function readfilemsg() {
 
 // dbcontrol
 function dbcontrol() {
-
-  ipcMain.on('create-db', () => {
+  ipcMain.handle('create-db', async() => {
     console.log("main :");
-    var msg = readdb()
-    console.log("localmsg:");
-    console.log(msg);
-    // return setdbPath(localpath)
+    console.log(app.getPath('appData'));
+    var msg = await readdb()
+    log(msg)
   })
 
-  ipcMain.handle('test-db', async () => {
-    var teststr = "../render/src/assets/database/basedb.db"
-    console.log(teststr);
-    try {
-      return await setdbPath(teststr)
-    }catch(err){
-      console.log(err)
-    }
+  // markdown 数据库持久化读取
+  ipcMain.handle('load-db-data',async()=>{
+    log("load-db-data")
+
   })
+
+  // markdown 数据库持久化存储
+  ipcMain.handle('save-file-by-db',async(content)=>{
+    log('save-file-by-db')
+    await createmdfilebydb(content)
+  })
+
+  // ipcMain.handle('test-db', async () => {
+  //   var teststr = "../../src/renderer/src/assets/database/basedb1.db"
+  //   // var teststr2="E:\\CandC\\project01\\test-project-repo\\electron-markdown\\src\\renderer\\src\\assets\\database\\basedb.db"
+  //   console.log(teststr);
+
+  //   // test
+  //   console.log("dirname: "+__dirname);
+  //   console.log("filename: "+__filename);
+
+  //   try {
+  //     var testbool=await setdbPath(teststr)
+  //     console.log(testbool);
+  //     return testbool
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // })
+
 }
