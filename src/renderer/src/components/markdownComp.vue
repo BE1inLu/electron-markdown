@@ -104,6 +104,7 @@ export default {
     async savefilebydatabase() {
       if (this.value != null) {
         try {
+          // console.log("thisvalue: "+this.value)
           await window.control.savefilebysql(this.value)
           ElMessage({
             message: 'save file by sql success',

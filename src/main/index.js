@@ -134,14 +134,16 @@ function dbcontrol() {
   // markdown 数据库持久化读取
   ipcMain.handle('load-db-data',async()=>{
     log("load-db-data")
-
   })
 
   // markdown 数据库持久化存储
-  ipcMain.handle('save-file-by-db',async(content)=>{
+  ipcMain.handle('save-file-by-db',async(event,content)=>{
     log('save-file-by-db')
+    log(content)
     await createmdfilebydb(content)
   })
+
+  
 
   // ipcMain.handle('test-db', async () => {
   //   var teststr = "../../src/renderer/src/assets/database/basedb1.db"
