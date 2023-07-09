@@ -24,6 +24,7 @@
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^1.0.2",
     "bytemd": "^1.21.0",
+    "electron-store": "^8.1.0",
     "electron-updater": "^5.3.0",
     "element-plus": "^2.3.6",
     "js-yaml": "^4.1.0",

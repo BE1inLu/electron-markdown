@@ -2,12 +2,12 @@
   <el-table :data="list">
     <el-table-column type="index" label="id" width="50px" />
     <el-table-column prop="id" label="SQL-ID" width="150px" />
-    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="name" label="Title" />
     <el-table-column prop="createdate" label="CreateDate" />
     <el-table-column prop="update" label="UpDate" />
     <el-table-column prop="setting" label="satting">
-      <template #default="">
-        <el-button class="edit" type="primary">Edit</el-button>
+      <template #default="scope">
+        <el-button class="edit" type="primary" @click="editfile(scope)">Edit</el-button>
         <el-button class="del" type="danger">Del</el-button>
       </template>
     </el-table-column>
@@ -18,9 +18,14 @@
 export default {
   name: 'Tableview',
   // eslint-disable-next-line vue/require-prop-types
-  props: ["list"],
+  props: ['list'],
   data() {
-    return {
+    return {}
+  },
+  methods: {
+    editfile(scope) {
+      // eslint-disable-next-line no-undef
+      console.log(scope.$index)
     }
   }
 }

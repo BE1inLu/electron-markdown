@@ -7,8 +7,8 @@
     <el-tab-pane label="card" name="cardview"> cardview </el-tab-pane>
   </el-tabs>
   <div>
-    <el-button @click="getsqldata">test</el-button>
-    <el-button @click="loaddbdata">loaddbdata</el-button>
+    <!-- <el-button @click="getsqldata">test</el-button> -->
+    <el-button @click="cleartable">cleartable</el-button>
   </div>
 </template>
 
@@ -20,11 +20,7 @@ export default {
   data() {
     return {
       activeName: 'tableview',
-      tabledata: [
-        // { id: 1, name: 'test1', createdate: '2023-7-7', update: '2023-7-8' },
-        // { id: 2, name: 'test2', createdate: '2023-7-5', update: '2023-7-8' },
-        // { id: 3, name: 'test3', createdate: '2023-7-6', update: '2023-7-8' }
-      ]
+      tabledata: []
     }
   },
   mounted() {
@@ -45,13 +41,16 @@ export default {
           name: 'null',
           createdate: dbdata[i][2],
           update: dbdata[i][3],
-          content:dbdata[i][1],
+        //   content: dbdata[i][1]
         }
         console.log(localtable)
         this.tabledata.push(localtable)
       }
 
       console.log(this.tabledata)
+    },
+    cleartable() {
+      this.tabledata = []
     }
   }
 }
