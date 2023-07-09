@@ -148,24 +148,4 @@ function dbcontrol() {
     await createmdfilebydb(content)
   })
 
-
-
-  // ipcMain.handle('test-db', async () => {
-  //   var teststr = "../../src/renderer/src/assets/database/basedb1.db"
-  //   // var teststr2="E:\\CandC\\project01\\test-project-repo\\electron-markdown\\src\\renderer\\src\\assets\\database\\basedb.db"
-  //   console.log(teststr);
-
-  //   // test
-  //   console.log("dirname: "+__dirname);
-  //   console.log("filename: "+__filename);
-
-  //   try {
-  //     var testbool=await setdbPath(teststr)
-  //     console.log(testbool);
-  //     return testbool
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // })
-
 }

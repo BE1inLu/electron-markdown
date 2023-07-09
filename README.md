@@ -8,6 +8,7 @@
 - `vue-router`
 - `element-plus`
 - `electron-sqlite`
+- `electron-store`
 
 
 TODO:
