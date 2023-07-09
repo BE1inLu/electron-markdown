@@ -132,6 +132,7 @@ function dbcontrol() {
   })
 
   // markdown 数据库持久化读取
+  // eslint-disable-next-line no-unused-vars
   ipcMain.handle('load-db-data', async (event) => {
     log("load-db-data")
     const alldbdata=await readallabdata()
