@@ -25,6 +25,7 @@ export default {
   methods: {
     editfile(scope) {
       // eslint-disable-next-line no-undef
+      console.log(scope.row);
       console.log(scope.$index)
     }
   }

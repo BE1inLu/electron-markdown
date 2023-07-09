@@ -14,9 +14,10 @@
 TODO:
 - ⭕集成 sqlite
     - ⭕sqlite 读写实现
+    - 🚧sqllite 插入删除实现
 - ⭕本地保存、读取功能
 - ⭕electron-store 集成
 - 🚧托盘功能
-- 🚧setting 页实现
+- setting 页实现
 - ipc 命名规范
 - TODOLIST 页面实现

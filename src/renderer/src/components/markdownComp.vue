@@ -128,6 +128,10 @@ export default {
       } else {
         ElMessage.error('save file error')
       }
+    },
+    // TODO
+    async loadfilebydatabase(){
+      
     }
   }
 }

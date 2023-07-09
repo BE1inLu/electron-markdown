@@ -29,7 +29,7 @@
             <el-icon><Setting /></el-icon>
             <span>Setting</span>
           </template>
-          <el-menu-item class="settingitem" index="1-1">Setting</el-menu-item>
+          <el-menu-item class="settingitem" index="1-1" @click="this.$router.push('/setting')">Setting</el-menu-item>
           <el-menu-item class="settingitem" index="1-2" @click="open">About</el-menu-item>
           <el-menu-item class="settingitem" index="1-3">Exit</el-menu-item>
         </el-sub-menu>
@@ -49,13 +49,13 @@ export default {
       ElMessageBox({
         title: 'about',
         message:
-          'Electron v' +
+          'Electron v.' +
           versions.electron +
-          ',chromeium v' +
+          '  ,chromeium v.' +
           versions.chrome +
-          ',Node v' +
+          '  ,Node v.' +
           versions.node +
-          ',V8 v' +
+          '  ,V8 v.' +
           versions.v8
       })
     }

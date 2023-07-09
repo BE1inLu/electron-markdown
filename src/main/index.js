@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
-import { createmdfilebydb, readallabdata, readdb } from './dbcontrol/index.js'
+import { createmdfilebydb, readallabdata, loaddb, loaddbdatabyuuid } from './dbcontrol/index.js'
 import { log } from 'console';
 
 function createWindow() {
@@ -125,9 +125,7 @@ function readfilemsg() {
 // dbcontrol
 function dbcontrol() {
   ipcMain.handle('create-db', async () => {
-    console.log("main :");
-    console.log(app.getPath('appData'));
-    var msg = await readdb()
+    var msg = await loaddb()
     log(msg)
   })
 
@@ -135,17 +133,22 @@ function dbcontrol() {
   // eslint-disable-next-line no-unused-vars
   ipcMain.handle('load-db-data', async (event) => {
     log("load-db-data")
-    const alldbdata=await readallabdata()
-    log("alldbdata")
-    log(alldbdata)
+    const alldbdata = await readallabdata()
+    // log("alldbdata")
+    // log(alldbdata)
     return alldbdata
   })
 
   // markdown 数据库持久化存储
   ipcMain.handle('save-file-by-db', async (event, content) => {
     log('save-file-by-db')
-    log(content)
+    // log(content)
     await createmdfilebydb(content)
   })
 
+  // markdown 数据库持久化读取 content
+  ipcMain.handle('load-db-dada-by-uuid', async (event, uuid) => {
+    log('load-db-dada-by-uuid')
+    return await loaddbdatabyuuid(uuid)
+  })
 }

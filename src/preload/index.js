@@ -52,6 +52,7 @@ try {
   contextBridge.exposeInMainWorld('dbcontrol', {
     createdb: () => ipcRenderer.invoke('create-db'),
     loaddbdata: () => ipcRenderer.invoke('load-db-data'),
+    loaddbcontent:(uuid)=>ipcRenderer.invoke('load-db-dada-by-uuid',uuid)
   })
 } catch (err) {
   console.log(err);
