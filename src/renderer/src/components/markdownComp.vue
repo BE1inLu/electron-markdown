@@ -44,6 +44,16 @@
       </el-row>
     </div>
   </div>
+  <el-dialog :v-model="dialogcontrol" title="input your filetitle" width="20%">
+    <el-form v-model="formtitle">
+      <el-form-item label="title">
+        <el-input v-model="filetitle" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="savetitle">Create</el-button>
+      </el-form-item>
+    </el-form>
+  </el-dialog>
 </template>
 
 <script>
@@ -59,7 +69,9 @@ export default {
   data() {
     return {
       value: '',
-      plugins
+      plugins,
+      filetitle: '',
+      dialogcontrol: false
     }
   },
   methods: {
@@ -104,7 +116,6 @@ export default {
     async savefilebydatabase() {
       if (this.value != null) {
         try {
-          // console.log("thisvalue: "+this.value)
           await window.control.savefilebysql(this.value)
           ElMessage({
             message: 'save file by sql success',
@@ -114,6 +125,8 @@ export default {
           ElMessage.error('save file error')
           console.log(err)
         }
+      } else {
+        ElMessage.error('save file error')
       }
     }
   }
