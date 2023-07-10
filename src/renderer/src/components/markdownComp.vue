@@ -66,13 +66,24 @@ import { ElMessage } from 'element-plus'
 const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
+  // eslint-disable-next-line vue/require-prop-types
+  props:["content"]
+  ,
   data() {
     return {
       value: '',
       plugins,
       filetitle: '',
-      dialogcontrol: false
+      dialogcontrol: false,
     }
+  },
+  updated() {
+    // test
+    console.log("contentbymdc:");
+    console.log(this.content)
+
+    this.value=this.content[0]
+
   },
   methods: {
     handleChange(v) {
@@ -130,9 +141,7 @@ export default {
       }
     },
     // TODO
-    async loadfilebydatabase(){
-      
-    }
+    async loadfilebydatabase() {}
   }
 }
 </script>

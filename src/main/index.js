@@ -149,6 +149,8 @@ function dbcontrol() {
   // markdown 数据库持久化读取 content
   ipcMain.handle('load-db-dada-by-uuid', async (event, uuid) => {
     log('load-db-dada-by-uuid')
-    return await loaddbdatabyuuid(uuid)
+    const data=await loaddbdatabyuuid(uuid)
+    log(data)
+    return data
   })
 }

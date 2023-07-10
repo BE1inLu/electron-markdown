@@ -12,6 +12,7 @@ const routers = [{
     component: homeview,
 }, {
     path: '/edit',
+    name: 'edit',
     component: editview,
 }, {
     path: '/index',
@@ -26,5 +27,9 @@ export const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes: routers
 });
+
+// router.beforeEach(async(to,from)=>{
+//     return
+// })
 
 export default router;

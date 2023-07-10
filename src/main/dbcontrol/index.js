@@ -64,7 +64,13 @@ export async function readallabdata() {
 
 export async function loaddbdatabyuuid(uuid) {
     try {
-        return await executeQuery("SELECT * FROM markdowntable WHERE UUID = ?", '', [uuid])
+        log("uuid: ")
+        log("uuid: "+uuid.value)
+        log("typeof"+ typeof uuid.value)
+        const querystr="SELECT content FROM markdowntable WHERE uuid =?"
+        const dbvalues=[uuid.value]
+        log(dbvalues)
+        return await executeQuery(querystr,'all', dbvalues)
     } catch (err) {
         log(err)
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="sidenavdisplay">
     <div class="sidenavhead">
-      <el-menu class="sideNav" collapse="true" :router="true">
+      <el-menu class="sideNav" collapse="true" :router="true" :default-active="$route.path">
         <el-menu-item itemid="1" index="/home">
           <el-icon><House /></el-icon>
           <template #title>
@@ -29,7 +29,9 @@
             <el-icon><Setting /></el-icon>
             <span>Setting</span>
           </template>
-          <el-menu-item class="settingitem" index="1-1" @click="this.$router.push('/setting')">Setting</el-menu-item>
+          <el-menu-item class="settingitem" index="1-1" @click="$router.push('/setting')"
+            >Setting</el-menu-item
+          >
           <el-menu-item class="settingitem" index="1-2" @click="open">About</el-menu-item>
           <el-menu-item class="settingitem" index="1-3">Exit</el-menu-item>
         </el-sub-menu>
@@ -43,6 +45,9 @@ import { ElMessageBox } from 'element-plus'
 import { reactive } from 'vue'
 export default {
   name: 'Sidenav',
+  data() {
+    return {}
+  },
   methods: {
     open() {
       const versions = reactive({ ...window.electron.process.versions })
@@ -85,22 +90,21 @@ export default {
 }
 @media (prefers-color-scheme: dark) {
   .el-message-box {
-    --el-bg-color:#414243;
-    --el-text-color-regular:#86a5b1;
-    --el-text-color-primary:#86a5b1;
-    --el-border-color-lighter:#414243;
+    --el-bg-color: #414243;
+    --el-text-color-regular: #86a5b1;
+    --el-text-color-primary: #86a5b1;
+    --el-border-color-lighter: #414243;
   }
 
-  .el-menu{
-    --el-menu-bg-color:#414243;
-    --el-menu-text-color:#86a5b1;
-    --el-menu-hover-bg-color:#6a6c6e;
-    --el-menu-border-color:#414243;
+  .el-menu {
+    --el-menu-bg-color: #414243;
+    --el-menu-text-color: #86a5b1;
+    --el-menu-hover-bg-color: #6a6c6e;
+    --el-menu-border-color: #414243;
   }
 
-  .el-popper.is-light{
-    --el-border-color-light:#6a6c6e;
+  .el-popper.is-light {
+    --el-border-color-light: #6a6c6e;
   }
-
 }
 </style>
