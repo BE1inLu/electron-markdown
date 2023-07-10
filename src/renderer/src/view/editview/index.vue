@@ -20,11 +20,8 @@ export default {
   },
   methods: {
     async loaddbcontent() {
-      console.log(this.$route.query)
       const uuid = this.$route.query;
       const localcontent =await window.dbcontrol.loaddbcontent(uuid)
-      console.log("localcontent: ");
-      console.log(localcontent[0]);
       this.content=localcontent[0]
     }
   }

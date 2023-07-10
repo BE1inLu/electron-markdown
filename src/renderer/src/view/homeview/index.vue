@@ -11,7 +11,6 @@ export default {
   },
   methods: {
     async getsqldata() {
-      console.log('loaddbdata')
       await window.dbcontrol.createdb()
     }
   }

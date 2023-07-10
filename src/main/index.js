@@ -4,7 +4,6 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
 import { createmdfilebydb, readallabdata, loaddb, loaddbdatabyuuid } from './dbcontrol/index.js'
-import { log } from 'console';
 
 function createWindow() {
   // Create the browser window.
@@ -125,32 +124,24 @@ function readfilemsg() {
 // dbcontrol
 function dbcontrol() {
   ipcMain.handle('create-db', async () => {
-    var msg = await loaddb()
-    log(msg)
+    await loaddb()
   })
 
   // markdown 数据库持久化读取
   // eslint-disable-next-line no-unused-vars
   ipcMain.handle('load-db-data', async (event) => {
-    log("load-db-data")
     const alldbdata = await readallabdata()
-    // log("alldbdata")
-    // log(alldbdata)
     return alldbdata
   })
 
   // markdown 数据库持久化存储
   ipcMain.handle('save-file-by-db', async (event, content) => {
-    log('save-file-by-db')
-    // log(content)
     await createmdfilebydb(content)
   })
 
   // markdown 数据库持久化读取 content
   ipcMain.handle('load-db-dada-by-uuid', async (event, uuid) => {
-    log('load-db-dada-by-uuid')
     const data=await loaddbdatabyuuid(uuid)
-    log(data)
     return data
   })
 }

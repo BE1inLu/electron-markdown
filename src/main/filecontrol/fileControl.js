@@ -17,7 +17,6 @@ export function savemarkdownfile(content) {
         })
         .then((res) => {
             // 输出日志
-            console.log(res);
             fs.writeFileSync(res.filePath, content);
         })
         .catch((req) => {
@@ -36,11 +35,7 @@ export async function loadmarkdownfile() {
         defaultPath: '',
         title: "读取文件",
     }).then((res) => {
-        console.log("读取path：")
-        console.log(res)
         localdata = fs.readFileSync(res.filePaths[0], 'utf-8')
-        console.log("读取localdata")
-        console.log(localdata)
     }).catch((req) => {
         console.log(req);
         return

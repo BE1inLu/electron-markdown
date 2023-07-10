@@ -29,13 +29,8 @@ export default {
   methods: {
     async loaddbdata() {
       const dbdata = await window.dbcontrol.loaddbdata()
-      console.log(dbdata)
-      console.log(dbdata.length)
-
       for (var i = 0; i < dbdata.length; i++) {
         var localtable
-        console.log('i: ' + i)
-        console.log(dbdata[i])
         localtable = {
           id: dbdata[i][0],
           name: 'null',
@@ -43,11 +38,8 @@ export default {
           update: dbdata[i][3],
         //   content: dbdata[i][1]
         }
-        console.log(localtable)
         this.tabledata.push(localtable)
       }
-
-      console.log(this.tabledata)
     },
     cleartable() {
       this.tabledata = []

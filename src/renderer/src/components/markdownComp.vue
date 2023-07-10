@@ -78,18 +78,12 @@ export default {
     }
   },
   updated() {
-    // test
-    console.log("contentbymdc:");
-    console.log(this.content)
-
     this.value=this.content[0]
-
   },
   methods: {
     handleChange(v) {
       this.value = v
       window.addEventListener('keyup', this.handleKeyPress, true)
-      console.log(v)
     },
     handleKeyPress(event) {
       if (event.ctrlKey && event.keyCode == 83) {
@@ -112,8 +106,6 @@ export default {
     async loadfilebylocal() {
       try {
         var savedata = await window.control.openFile()
-        console.log('savedata:')
-        console.log(savedata)
         this.value = savedata
         ElMessage({
           message: 'load file success',

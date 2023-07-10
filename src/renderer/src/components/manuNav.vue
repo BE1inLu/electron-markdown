@@ -60,12 +60,10 @@ export default {
       window.control.minwindow()
     },
     windowmaxswitch() {
-      console.log('click windowmax')
       window.control.maxwindow()
       document.getElementById('maxbtn').blur()
     },
     windowcloseswitch() {
-      console.log('click windowclose')
       window.control.closewindow()
     }
   }

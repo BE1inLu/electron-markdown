@@ -25,8 +25,6 @@ export default {
   methods: {
     editfile(scope) {
       // eslint-disable-next-line no-undef
-      console.log(scope.row.id)
-      console.log(scope.$index)
       this.$router.push({ name: 'edit', query: { value: scope.row.id }, replace: true })
     }
   }
