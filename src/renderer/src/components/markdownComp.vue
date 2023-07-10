@@ -36,7 +36,9 @@
           Read
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>Action 1</el-dropdown-item>
+              <el-dropdown-item @click="$router.path('/index')"
+                >openfile by database</el-dropdown-item
+              >
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -67,18 +69,25 @@ const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
   // eslint-disable-next-line vue/require-prop-types
-  props:["content"]
-  ,
+  props: ['content'],
   data() {
     return {
       value: '',
       plugins,
       filetitle: '',
       dialogcontrol: false,
+      trick:false,
+      id:[]
     }
   },
   updated() {
-    this.value=this.content[0]
+    // test
+    if (this.content != null && this.trick==false) {
+      console.log('contentbymdc:')
+      console.log(this.content)
+      this.loadfilebydatabase()
+      
+    }
   },
   methods: {
     handleChange(v) {
@@ -132,8 +141,10 @@ export default {
         ElMessage.error('save file error')
       }
     },
-    // TODO
-    async loadfilebydatabase() {}
+    loadfilebydatabase() {
+      this.value = this.content[0]
+      this.trick=true
+    }
   }
 }
 </script>
