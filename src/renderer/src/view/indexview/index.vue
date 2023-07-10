@@ -41,7 +41,6 @@ export default {
           name: 'null',
           createdate: dbdata[i][2],
           update: dbdata[i][3],
-        //   content: dbdata[i][1]
         }
         console.log(localtable)
         this.tabledata.push(localtable)

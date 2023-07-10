@@ -36,7 +36,9 @@
           Read
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>Action 1</el-dropdown-item>
+              <el-dropdown-item @click="$router.path('/index')"
+                >openfile by database</el-dropdown-item
+              >
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -67,29 +69,31 @@ const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
   // eslint-disable-next-line vue/require-prop-types
-  props:["content"]
-  ,
+  props: ['content'],
   data() {
     return {
       value: '',
       plugins,
       filetitle: '',
       dialogcontrol: false,
+      trick:false,
+      id:[]
     }
   },
   updated() {
     // test
-    console.log("contentbymdc:");
-    console.log(this.content)
-
-    this.value=this.content[0]
-
+    if (this.content != null && this.trick==false) {
+      console.log('contentbymdc:')
+      console.log(this.content)
+      this.loadfilebydatabase()
+      
+    }
   },
   methods: {
     handleChange(v) {
       this.value = v
       window.addEventListener('keyup', this.handleKeyPress, true)
-      console.log(v)
+      // console.log(v)
     },
     handleKeyPress(event) {
       if (event.ctrlKey && event.keyCode == 83) {
@@ -140,8 +144,10 @@ export default {
         ElMessage.error('save file error')
       }
     },
-    // TODO
-    async loadfilebydatabase() {}
+    loadfilebydatabase() {
+      this.value = this.content[0]
+      this.trick=true
+    }
   }
 }
 </script>
