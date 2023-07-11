@@ -7,8 +7,6 @@
     <el-tab-pane label="card" name="cardview"> cardview </el-tab-pane>
   </el-tabs>
   <div>
-    <!-- <el-button @click="getsqldata">test</el-button> -->
-    <!-- <el-button @click="cleartable">cleartable</el-button> -->
   </div>
 </template>
 

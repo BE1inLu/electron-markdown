@@ -54,7 +54,7 @@ export async function createmdfilebydb(content) {
 export async function overloadfilebydb(uuid, value) {
     log("ovewrloadfilebydb")
     var updatefiledate = new Date().toLocaleDateString()
-    const querystr = "UPDATE basedb SET content = ? , exchangedate = ?  WHERE UUID = ?"
+    const querystr = "UPDATE markdowntable SET content = ? , exchangedate = ?  WHERE uuid = ?"
     const dbvalues = [value, updatefiledate, uuid]
     return await executeQuery(
         querystr, '', dbvalues
@@ -62,9 +62,9 @@ export async function overloadfilebydb(uuid, value) {
 }
 
 // 数据库删除
-export async function delfilebydb(uuid) {
-    log("ovewrloadfilebydb")
-    const querystr = "DELETE basedb WHERE UUID = ?"
+export async function deletefilebydb(uuid) {
+    log("deletefilebydb")
+    const querystr = "DELETE FROM markdowntable WHERE uuid = ?"
     const dbvalues = [uuid]
     return await executeQuery(querystr, '', dbvalues)
 }

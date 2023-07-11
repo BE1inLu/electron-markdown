@@ -8,7 +8,7 @@
     <el-table-column prop="setting" label="satting">
       <template #default="scope">
         <el-button class="edit" type="primary" @click="editfile(scope)">Edit</el-button>
-        <el-button class="del" type="danger">Del</el-button>
+        <el-button class="del" type="danger" @click="delfilebydb(scope)">Del</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -28,6 +28,14 @@ export default {
       console.log(scope.row.id)
       console.log(scope.$index)
       this.$router.push({ name: 'edit', query: { value: scope.row.id }, replace: true })
+    },
+    async delfilebydb(scope) {
+      console.log('scope.row.id: ' + scope.row.id)
+      const flag = await window.dbcontrol.deletefilebydb(scope.row.id)
+      if (flag) {
+        console.log('flag:' + flag)
+        console.log(this.list)
+      }
     }
   }
 }

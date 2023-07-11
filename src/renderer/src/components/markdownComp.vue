@@ -81,12 +81,8 @@ export default {
     }
   },
   updated() {
-    // test
     if (this.content != null && this.trick==false) {
-      console.log('contentbymdc:')
-      console.log(this.content)
       this.loadfilebydatabase()
-      
     }
   },
   methods: {
