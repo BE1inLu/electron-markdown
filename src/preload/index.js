@@ -52,7 +52,8 @@ try {
   contextBridge.exposeInMainWorld('dbcontrol', {
     createdb: () => ipcRenderer.invoke('create-db'),
     loaddbdata: () => ipcRenderer.invoke('load-db-data'),
-    loaddbcontent:(uuid)=>ipcRenderer.invoke('load-db-dada-by-uuid',uuid)
+    loaddbcontent:(uuid)=>ipcRenderer.invoke('load-db-dada-by-uuid',uuid),
+    deletefilebydb:(uuid)=>ipcRenderer.invoke('delete-db-file-by-uuid',uuid)
   })
 } catch (err) {
   console.log(err);
