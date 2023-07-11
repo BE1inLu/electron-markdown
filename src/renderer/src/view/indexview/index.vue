@@ -8,7 +8,7 @@
   </el-tabs>
   <div>
     <!-- <el-button @click="getsqldata">test</el-button> -->
-    <el-button @click="cleartable">cleartable</el-button>
+    <!-- <el-button @click="cleartable">cleartable</el-button> -->
   </div>
 </template>
 
@@ -47,9 +47,6 @@ export default {
       }
 
       console.log(this.tabledata)
-    },
-    cleartable() {
-      this.tabledata = []
     }
   }
 }

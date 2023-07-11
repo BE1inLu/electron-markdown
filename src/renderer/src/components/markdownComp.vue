@@ -63,7 +63,7 @@ import gfm from '@bytemd/plugin-gfm'
 import heighlight from '@bytemd/plugin-highlight'
 import emoji from '@bytemd/plugin-gemoji'
 import { Editor } from '@bytemd/vue-next'
-import '../assets/css/byteMD.css'
+import 'bytemd/dist/index.css'
 import { ElMessage } from 'element-plus'
 const plugins = [gfm(), heighlight(), emoji()]
 export default {
