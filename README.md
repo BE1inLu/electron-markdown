@@ -1,6 +1,6 @@
 # 项目简介
 
-此项目是 electron 练手项目
+此项目是 electron 练手项目  
 用 electron + vue 开发一个 markdown demo
 
 采用的包：
@@ -9,7 +9,16 @@
 - `element-plus`
 - `electron-sqlite`
 - `electron-store`
-
+  
+版本规范：
+* electron: `24.4.1`
+* nodejs: `20.3.1`
+* vue: `3.3.4`
+  
+已实现的功能：
+* darkmode
+* 本地文件存储
+* 数据库 CRUD
 
 TODO:
 - ⭕集成 sqlite
