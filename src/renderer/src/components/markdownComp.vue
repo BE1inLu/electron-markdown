@@ -134,7 +134,6 @@ export default {
         }
       } else {
         const cont = [this.id.value, this.value]
-        console.log('cont: ' + cont)
         await window.dbcontrol.savedbdatabyuuid(cont)
         ElMessage({
           message: 'update file by db success',
@@ -143,18 +142,8 @@ export default {
       }
     },
     loadfilebydatabase() {
-      
-      console.log('this content')
-      console.log(this.content)
-      console.log(this.uuid)
-
       this.value = this.content[0]
       this.id = this.uuid
-
-      console.log('this local store')
-      console.log(this.content)
-      console.log(this.id)
-
       this.trick = true
     },
     runindex() {

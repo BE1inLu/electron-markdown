@@ -23,23 +23,10 @@ export default {
   },
   methods: {
     async loaddbcontent() {
-      console.log(this.$route.query)
       const uuid = this.$route.query
       const localcontent = await window.dbcontrol.loaddbcontent(uuid)
-
-      console.log('localcontent: ')
-      console.log(localcontent[0])
-
       this.content.id = uuid
       this.content.cont = localcontent[0]
-
-
-      console.log('content:')
-      console.log(this.content)
-      console.log(this.content.cont)
-      console.log(this.content.id)
-
-      
     }
   }
 }

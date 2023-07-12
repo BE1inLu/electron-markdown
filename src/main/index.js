@@ -23,10 +23,6 @@ function createWindow() {
       sandbox: false
     }
   })
-
-  // store use
-  // const store = storefunc()
-
   darkmode()
 
   windowcontrol(mainWindow)
@@ -135,13 +131,9 @@ function dbcontrol() {
 
   ipcMain.handle('save-db-data-by-uuid', async (event, content) => {
     log('save-db-data-by-uuid')
-    console.log("content: ");
-    console.log("uuid: " + content[0]);
-    console.log("content.cont:" + content[1]);
     const uuid = content[0]
     const localcontent = content[1]
     const localbool = await updatefilebydb(uuid, localcontent)
-    console.log(localbool);
     return localbool
   })
 
@@ -151,25 +143,6 @@ function dbcontrol() {
 function localtray() {
   const tray = new Tray(windowicon)
   const localmenu = Menu.buildFromTemplate([
-    // {
-    //   label: '窗口样式',
-    // }
-    // ,
-    // {
-    //   label: 'dark',
-    //   type: 'radio',
-    //   checked: true,
-    //   click: () => {
-    //     nativeTheme.themeSource = 'dark'
-    //   }
-    // },
-    // {
-    //   label: 'light',
-    //   type: 'radio',
-    //   click: () => {
-    //     nativeTheme.themeSource = 'light'
-    //   }
-    // },
     {
       type: 'separator'
     },
