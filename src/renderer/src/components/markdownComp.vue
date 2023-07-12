@@ -15,12 +15,12 @@
           style="margin-left: 10px"
           type="primary"
           size="small"
-          @click="savebylocal()"
+          @click="savefilebydatabase()"
         >
-          Save
+          快速保存
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="savefilebydatabase()">save by database</el-dropdown-item>
+              <el-dropdown-item @click="savebylocal()">另存为..</el-dropdown-item>
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -31,13 +31,13 @@
           type="info"
           size="small"
           style="margin-left: 20px"
-          @click="loadfilebylocal()"
+          @click="$router.path('/index')"
         >
-          Read
+          数据库读取
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="$router.path('/index')"
-                >openfile by database</el-dropdown-item
+              <el-dropdown-item @click="loadfilebylocal()"
+                >本地读取</el-dropdown-item
               >
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
@@ -76,12 +76,12 @@ export default {
       plugins,
       filetitle: '',
       dialogcontrol: false,
-      trick:false,
-      id:[]
+      trick: false,
+      id: []
     }
   },
   updated() {
-    if (this.content != null && this.trick==false) {
+    if (this.content != null && this.trick == false) {
       this.loadfilebydatabase()
     }
   },
@@ -142,7 +142,7 @@ export default {
     },
     loadfilebydatabase() {
       this.value = this.content[0]
-      this.trick=true
+      this.trick = true
     }
   }
 }
