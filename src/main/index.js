@@ -1,9 +1,10 @@
-import { app, shell, BrowserWindow, ipcMain, nativeTheme } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeTheme, Menu, Tray } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.jpg?asset'
+import windowicon from '../../resources/icon.jpg?asset'
 import { savemarkdownfile, loadmarkdownfile } from './filecontrol/fileControl.js';
-import { createmdfilebydb, readallabdata, loaddb, loaddbdatabyuuid, deletefilebydb } from './dbcontrol/index.js'
+import { createmdfilebydb, readallabdata, loaddb, loaddbdatabyuuid, deletefilebydb, updatefilebydb } from './dbcontrol/index.js'
+import { log } from 'console';
 // import { storefunc } from './store/idnex';
 
 function createWindow() {
@@ -16,17 +17,14 @@ function createWindow() {
     frame: false,
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    ...(process.platform === 'linux' ? { windowicon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
-
-  // store use
-  // const store = storefunc()
-
   darkmode()
+
   windowcontrol(mainWindow)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -42,7 +40,7 @@ function createWindow() {
   }
 }
 app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.electron')
+  electronApp.setAppUserModelId('com.Markdown')
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
@@ -53,6 +51,8 @@ app.whenReady().then(() => {
   dbcontrol()
 
   createWindow()
+
+  localtray()
 
   savemsg()
 
@@ -125,7 +125,31 @@ function dbcontrol() {
 
   ipcMain.handle('delete-db-file-by-uuid', async (event, uuid) => {
     const localbool = await deletefilebydb(uuid)
+    log("localbool: ", localbool)
     return localbool
   })
 
+  ipcMain.handle('save-db-data-by-uuid', async (event, content) => {
+    log('save-db-data-by-uuid')
+    const uuid = content[0]
+    const localcontent = content[1]
+    const localbool = await updatefilebydb(uuid, localcontent)
+    return localbool
+  })
+
+}
+
+// tray 创建
+function localtray() {
+  const tray = new Tray(windowicon)
+  const localmenu = Menu.buildFromTemplate([
+    {
+      type: 'separator'
+    },
+    {
+      label: 'EXIT',
+    }
+  ])
+
+  tray.setContextMenu(localmenu)
 }

@@ -5,13 +5,12 @@ import { executeScript } from "sqlite-electron";
 
 // 读取database.db
 export async function loaddb() {
-    const devdatapath = "./userdb.sqlite3"
+    const datapath=["./userdb.sqlite3","../../basedb.sqlite3"]
     var testbool
     // 判断能不能检索数据库，无则创建db
     // 判断数据库能否读取，不能就初始化数据库
-    await setdbPath(devdatapath)
-    executeQuery("SELECT * FROM markdowntable ", "all").then((req) => {
-        console.log("select test: " + req)
+    await setdbPath(datapath[1])
+    executeQuery("SELECT * FROM markdowntable ", "all").then(() => {
         return testbool = true
     }).catch(() => {
         const script = "CREATE TABLE `markdowntable` (`uuid` text NOT NULL,`content` blob,`createdate` text,`exchangedate` text,PRIMARY KEY (`uuid`));"
@@ -35,7 +34,7 @@ export async function createmdfilebydb(content) {
 }
 
 // 数据库插入（保存并更新）
-export async function overloadfilebydb(uuid, value) {
+export async function updatefilebydb(uuid, value) {
     var updatefiledate = new Date().toLocaleDateString()
     const querystr = "UPDATE markdowntable SET content = ? , exchangedate = ?  WHERE uuid = ?"
     const dbvalues = [value, updatefiledate, uuid]
@@ -66,10 +65,8 @@ export async function readallabdata() {
 
 export async function loaddbdatabyuuid(uuid) {
     try {
-
         const querystr = "SELECT content FROM markdowntable WHERE uuid =?"
         const dbvalues = [uuid.value]
-
         return await executeQuery(querystr, 'all', dbvalues)
     } catch (err) {
         console.log(err)

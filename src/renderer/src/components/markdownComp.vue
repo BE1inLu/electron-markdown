@@ -15,12 +15,12 @@
           style="margin-left: 10px"
           type="primary"
           size="small"
-          @click="savebylocal()"
+          @click="savefilebydatabase()"
         >
-          Save
+          快速保存
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="savefilebydatabase()">save by database</el-dropdown-item>
+              <el-dropdown-item @click="savebylocal()">另存为..</el-dropdown-item>
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -31,14 +31,12 @@
           type="info"
           size="small"
           style="margin-left: 20px"
-          @click="loadfilebylocal()"
+          @click="runindex()"
         >
-          Read
+          快速读取
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="$router.path('/index')"
-                >openfile by database</el-dropdown-item
-              >
+              <el-dropdown-item @click="loadfilebylocal()">本地读取</el-dropdown-item>
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -69,19 +67,19 @@ const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['content'],
+  props: ['content', 'uuid'],
   data() {
     return {
       value: '',
       plugins,
       filetitle: '',
       dialogcontrol: false,
-      trick:false,
-      id:[]
+      trick: false,
+      id: ''
     }
   },
   updated() {
-    if (this.content != null && this.trick==false) {
+    if (this.content != null && this.trick == false) {
       this.loadfilebydatabase()
     }
   },
@@ -92,7 +90,7 @@ export default {
     },
     handleKeyPress(event) {
       if (event.ctrlKey && event.keyCode == 83) {
-        window.control.savefile(this.value)
+        this.savefilebydatabase()
       }
     },
     savebylocal() {
@@ -122,11 +120,12 @@ export default {
       }
     },
     async savefilebydatabase() {
-      if (this.value != null) {
+      console.log('trick:' + this.trick)
+      if (this.value != null && this.trick == false) {
         try {
           await window.control.savefilebysql(this.value)
           ElMessage({
-            message: 'save file by sql success',
+            message: 'save file by db success',
             type: 'success'
           })
         } catch (err) {
@@ -134,12 +133,21 @@ export default {
           console.log(err)
         }
       } else {
-        ElMessage.error('save file error')
+        const cont = [this.id.value, this.value]
+        await window.dbcontrol.savedbdatabyuuid(cont)
+        ElMessage({
+          message: 'update file by db success',
+          type: 'success'
+        })
       }
     },
     loadfilebydatabase() {
       this.value = this.content[0]
-      this.trick=true
+      this.id = this.uuid
+      this.trick = true
+    },
+    runindex() {
+      this.$router.push('/index')
     }
   }
 }

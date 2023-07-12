@@ -33,7 +33,7 @@
             >Setting</el-menu-item
           >
           <el-menu-item class="settingitem" index="1-2" @click="open">About</el-menu-item>
-          <el-menu-item class="settingitem" index="1-3">Exit</el-menu-item>
+          <el-menu-item class="settingitem" index="1-3" @click="closewindow()">Exit</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
@@ -63,6 +63,9 @@ export default {
           '  ,V8 v.' +
           versions.v8
       })
+    },
+    closewindow(){
+      window.control.closewindow()
     }
   }
 }
