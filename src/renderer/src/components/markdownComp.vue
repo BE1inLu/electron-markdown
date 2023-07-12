@@ -31,14 +31,12 @@
           type="info"
           size="small"
           style="margin-left: 20px"
-          @click="$router.path('/index')"
+          @click="runindex()"
         >
-          数据库读取
+          快速读取
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="loadfilebylocal()"
-                >本地读取</el-dropdown-item
-              >
+              <el-dropdown-item @click="loadfilebylocal()">本地读取</el-dropdown-item>
               <el-dropdown-item>Action 2</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -69,7 +67,7 @@ const plugins = [gfm(), heighlight(), emoji()]
 export default {
   components: { Editor },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['content'],
+  props: ['content', 'uuid'],
   data() {
     return {
       value: '',
@@ -77,7 +75,7 @@ export default {
       filetitle: '',
       dialogcontrol: false,
       trick: false,
-      id: []
+      id: ''
     }
   },
   updated() {
@@ -93,7 +91,7 @@ export default {
     },
     handleKeyPress(event) {
       if (event.ctrlKey && event.keyCode == 83) {
-        window.control.savefile(this.value)
+        this.savefilebydatabase()
       }
     },
     savebylocal() {
@@ -125,11 +123,12 @@ export default {
       }
     },
     async savefilebydatabase() {
-      if (this.value != null) {
+      console.log('trick:' + this.trick)
+      if (this.value != null && this.trick == false) {
         try {
           await window.control.savefilebysql(this.value)
           ElMessage({
-            message: 'save file by sql success',
+            message: 'save file by db success',
             type: 'success'
           })
         } catch (err) {
@@ -137,12 +136,32 @@ export default {
           console.log(err)
         }
       } else {
-        ElMessage.error('save file error')
+        const cont = [this.id.value, this.value]
+        console.log('cont: ' + cont)
+        await window.dbcontrol.savedbdatabyuuid(cont)
+        ElMessage({
+          message: 'update file by db success',
+          type: 'success'
+        })
       }
     },
     loadfilebydatabase() {
+      
+      console.log('this content')
+      console.log(this.content)
+      console.log(this.uuid)
+
       this.value = this.content[0]
+      this.id = this.uuid
+
+      console.log('this local store')
+      console.log(this.content)
+      console.log(this.id)
+
       this.trick = true
+    },
+    runindex() {
+      this.$router.push('/index')
     }
   }
 }

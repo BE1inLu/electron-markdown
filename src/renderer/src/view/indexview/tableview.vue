@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="list">
+  <el-table :data="localdata">
     <el-table-column type="index" label="id" width="50px" />
     <el-table-column prop="id" label="SQL-ID" width="150px" />
     <el-table-column prop="name" label="Title" />
@@ -18,9 +18,14 @@
 export default {
   name: 'Tableview',
   // eslint-disable-next-line vue/require-prop-types
-  props: ['list'],
+  props: ['paramdata'],
   data() {
-    return {}
+    return {
+      localdata:[]
+    }
+  },
+  mounted(){
+    this.localdata=this.paramdata
   },
   methods: {
     editfile(scope) {
@@ -31,11 +36,8 @@ export default {
     },
     async delfilebydb(scope) {
       console.log('scope.row.id: ' + scope.row.id)
-      const flag = await window.dbcontrol.deletefilebydb(scope.row.id)
-      if (flag) {
-        console.log('flag:' + flag)
-        console.log(this.list)
-      }
+      await window.dbcontrol.deletefilebydb(scope.row.id)
+      this.localdata.splice(scope.$index)
     }
   }
 }
