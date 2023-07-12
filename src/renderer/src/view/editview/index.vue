@@ -1,6 +1,6 @@
 <template>
   <div>
-    <markdownComp :content="content"/>
+    <markdownComp :content="content.cont" :uuid="content.id"/>
   </div>
 </template>
 
@@ -9,9 +9,12 @@ import markdownComp from '../../components/markdownComp.vue'
 
 export default {
   components: { markdownComp },
-  data(){
-    return{
-      content:[],
+  data() {
+    return {
+      content: {
+        cont: [],
+        id: []
+      }
     }
   },
   // eslint-disable-next-line vue/require-prop-types
@@ -20,9 +23,23 @@ export default {
   },
   methods: {
     async loaddbcontent() {
-      const uuid = this.$route.query;
-      const localcontent =await window.dbcontrol.loaddbcontent(uuid)
-      this.content=localcontent[0]
+      console.log(this.$route.query)
+      const uuid = this.$route.query
+      const localcontent = await window.dbcontrol.loaddbcontent(uuid)
+
+      console.log('localcontent: ')
+      console.log(localcontent[0])
+
+      this.content.id = uuid
+      this.content.cont = localcontent[0]
+
+
+      console.log('content:')
+      console.log(this.content)
+      console.log(this.content.cont)
+      console.log(this.content.id)
+
+      
     }
   }
 }

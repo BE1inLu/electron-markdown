@@ -39,7 +39,7 @@ try {
     closewindow: () => ipcRenderer.send('close-window'),
     // test3:实现文件保存功能
     savefile: (msg) => ipcRenderer.send('open-save-chart-dialog', msg),// 外部保存
-    savefilebysql:(msg)=>ipcRenderer.invoke('save-file-by-db',msg),// 数据库保存
+    savefilebysql: (msg) => ipcRenderer.invoke('save-file-by-db', msg),// 数据库保存
     // test4:实现文件读取功能
     openFile: () => ipcRenderer.invoke('dialog-openfile'),// 外部读取
   })
@@ -52,8 +52,9 @@ try {
   contextBridge.exposeInMainWorld('dbcontrol', {
     createdb: () => ipcRenderer.invoke('create-db'),
     loaddbdata: () => ipcRenderer.invoke('load-db-data'),
-    loaddbcontent:(uuid)=>ipcRenderer.invoke('load-db-dada-by-uuid',uuid),
-    deletefilebydb:(uuid)=>ipcRenderer.invoke('delete-db-file-by-uuid',uuid)
+    loaddbcontent: (uuid) => ipcRenderer.invoke('load-db-dada-by-uuid', uuid),
+    savedbdatabyuuid: (content) => ipcRenderer.invoke('save-db-data-by-uuid', content),
+    deletefilebydb: (uuid) => ipcRenderer.invoke('delete-db-file-by-uuid', uuid)
   })
 } catch (err) {
   console.log(err);

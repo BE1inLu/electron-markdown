@@ -2,12 +2,11 @@
   <el-tabs v-model="activeName" class="indexview_main">
     <el-tab-pane label="table" name="tableview" style="padding-left: 10px">
       <!-- tableview -->
-      <tableview :list="tabledata" />
+      <tableview :paramdata="tabledata" />
     </el-tab-pane>
     <el-tab-pane label="card" name="cardview"> cardview </el-tab-pane>
   </el-tabs>
-  <div>
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -18,7 +17,8 @@ export default {
   data() {
     return {
       activeName: 'tableview',
-      tabledata: []
+      tabledata: [],
+      timer:null,
     }
   },
   mounted() {
@@ -33,7 +33,7 @@ export default {
           id: dbdata[i][0],
           name: 'null',
           createdate: dbdata[i][2],
-          update: dbdata[i][3],
+          update: dbdata[i][3]
         }
         this.tabledata.push(localtable)
       }
