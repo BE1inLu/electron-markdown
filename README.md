@@ -2,6 +2,7 @@
 
 此项目是 electron 练手项目  
 用 electron + vue 开发一个 markdown demo
+``存档，项目库不再更新和维护``
 
 采用的包：
 - `bytemd`
@@ -15,21 +16,15 @@
 * nodejs: `20.3.1`
 * vue: `3.3.4`
   
-已实现的功能：
-* darkmode
-* 本地文件存储
-* 数据库 CRUD
+特性:
+- 集成 sqlite
+    - sqlite 读写实现
+    - file 读取插入更新
+    - sqlite del实现
+- 本地保存、读取功能
+- 托盘功能(简易)
 
-TODO:
-- ⭕集成 sqlite
-    - ⭕sqlite 读写实现
-    - ⭕file 读取插入更新
-    - ⭕sqlite del实现
-- ⭕本地保存、读取功能
-- ⭕托盘功能(简易)
-- 🚧自动保存
-- 🚧setting 页实现
-- ipc 命名规范
+
 
 ---
 MIT
