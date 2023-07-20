@@ -1,8 +1,8 @@
 # 项目简介
 
 此项目是 electron 练手项目  
-用 electron + vue 开发一个 markdown demo
-``存档，项目库不再更新和维护``
+用 electron + vue 开发一个 markdown demo  
+### 存档，项目库不再更新和维护
 
 采用的包：
 - `bytemd`
